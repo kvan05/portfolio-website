@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { BookOpen, Code2, Layers, Lightbulb, User, Calendar, Phone, Mail, MapPin, Target, Heart } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
 
 const strengthIcons = [Lightbulb, BookOpen, Code2, Layers];
 
@@ -48,9 +49,13 @@ export function About() {
         >
           <Card className="p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center md:items-start bg-gradient-to-br from-card to-primary/5 border-primary/20 shadow-xl shadow-primary/5">
             <div className="w-40 h-40 md:w-48 md:h-48 relative rounded-3xl overflow-hidden border-4 border-primary/20 shrink-0 shadow-lg">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                <User size={64} className="text-primary/50" />
-              </div>
+              <Image 
+                src="/avatar.jpg" 
+                alt={t.about.profile.name} 
+                fill 
+                className="object-cover transition-transform duration-500 hover:scale-110"
+                sizes="(max-width: 768px) 160px, 192px"
+              />
             </div>
             <div className="flex-1 w-full">
               <h3 className="text-2xl font-bold mb-6 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-primary to-violet-500">{t.about.profile.name}</h3>
