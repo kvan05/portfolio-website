@@ -22,6 +22,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const saved = localStorage.getItem("portfolio-language") as Language;
     if (saved === "vi" || saved === "en") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLanguage(saved);
     } else {
       // Auto-detect based on browser language if not saved

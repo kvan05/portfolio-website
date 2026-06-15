@@ -12,13 +12,6 @@ const skillColors = [
   "from-blue-500/20 to-cyan-500/20",
   "from-amber-500/20 to-orange-500/20",
 ];
-const skillAccents = [
-  "group-hover:from-pink-500 group-hover:to-rose-500",
-  "group-hover:from-violet-500 group-hover:to-purple-500",
-  "group-hover:from-blue-500 group-hover:to-cyan-500",
-  "group-hover:from-amber-500 group-hover:to-orange-500",
-];
-
 export function Skills() {
   const { t } = useLanguage();
 

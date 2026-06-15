@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { BookOpen, Code2, Layers, Lightbulb, User, Calendar, Phone, Mail, MapPin, Target, Heart } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
@@ -11,12 +11,6 @@ const strengthIcons = [Lightbulb, BookOpen, Code2, Layers];
 export function About() {
   const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end center"],
-  });
-
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section id="about" className="py-24 relative" ref={containerRef}>

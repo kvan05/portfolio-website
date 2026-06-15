@@ -1,15 +1,34 @@
 "use client";
 
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/language-provider";
 
+const technologies = [
+  "React", "Next.js", "Flutter", "TypeScript", 
+  "PostgreSQL", "SQL Server", "Git", "Tailwind CSS",
+  "Node.js", "Framer Motion", "Prisma"
+];
+
 export function TechSphere() {
   const { t } = useLanguage();
-  const technologies = [
-    "React", "Next.js", "Flutter", "TypeScript", 
-    "PostgreSQL", "SQL Server", "Git", "Tailwind CSS",
-    "Node.js", "Framer Motion", "Prisma"
-  ];
+
+  const techItems = useMemo(() => {
+    return technologies.map((tech, index) => {
+      const angle = (index / technologies.length) * Math.PI * 2;
+      // eslint-disable-next-line react-hooks/purity
+      const radius = 120 + Math.random() * 80;
+      return {
+        tech,
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius,
+        // eslint-disable-next-line react-hooks/purity
+        duration: 15 + Math.random() * 15,
+        // eslint-disable-next-line react-hooks/purity
+        delay: Math.random() * 5
+      };
+    });
+  }, []);
 
   return (
     <section className="py-24 relative overflow-hidden">
@@ -32,16 +51,7 @@ export function TechSphere() {
            {/* Center Core */}
            <div className="absolute w-32 h-32 bg-primary/20 rounded-full blur-[40px] animate-pulse" />
            
-           {technologies.map((tech, index) => {
-             // Generate random but distributed positions
-             const angle = (index / technologies.length) * Math.PI * 2;
-             const radius = 120 + Math.random() * 80; // Between 120 and 200px from center
-             const x = Math.cos(angle) * radius;
-             const y = Math.sin(angle) * radius;
-             
-             // Random animation values
-             const duration = 15 + Math.random() * 15;
-             const delay = Math.random() * 5;
+           {techItems.map((item, index) => {
 
              return (
                <motion.div
@@ -51,19 +61,19 @@ export function TechSphere() {
                  whileInView={{ opacity: 1, scale: 1 }}
                  viewport={{ once: true }}
                  animate={{
-                   x: [x, x + 20, x],
-                   y: [y, y - 20, y],
+                   x: [item.x, item.x + 20, item.x],
+                   y: [item.y, item.y - 20, item.y],
                  }}
                  transition={{
-                   duration: duration,
+                   duration: item.duration,
                    repeat: Infinity,
                    ease: "easeInOut",
-                   delay: delay,
+                   delay: item.delay,
                    opacity: { duration: 1 },
                    scale: { duration: 1 }
                  }}
                >
-                 {tech}
+                 {item.tech}
                </motion.div>
              );
            })}
